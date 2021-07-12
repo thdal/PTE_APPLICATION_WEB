@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  cc:FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,9 +30,6 @@ export class LoginComponent implements OnInit {
       email: ['test@epsi.fr', Validators.required],
       password: ['tortue', Validators.required]
     });
-
-    this.cc = this.formBuilder.group(({}));
-
   }
 
 // for accessing to form fields

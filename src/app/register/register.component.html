@@ -40,16 +40,12 @@
     <!-- Form group profile -->
     <div class="form-group">
       <label>Type de profil :</label><br><br>
-        <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile.errors }">
-          <input class="form-check-input" type="radio" value="Visiteur" formControlName="profile" id="inlineRadio1">
-          <label class="form-check-label" for="inlineRadio1">Visiteur</label>
-        </div>
-        <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile.errors }">
-          <input class="form-check-input" type="radio" value="Organisateur" formControlName="profile" id="inlineRadio2">
-          <label class="form-check-label" for="inlineRadio2">Organisateur</label>
-        </div><br>
+      <div *ngFor="let userProfile of userProfilesRecord" class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile.errors }">
+        <input  class="form-check-input" type="radio" formControlName="profile" id="inlineRadio{{userProfile.id}}" value="{{userProfile.id}}" >
+        <label class="form-check-label" for="inlineRadio{{userProfile.id}}">{{userProfile.profile_name}}</label>
+      </div>
       <div *ngIf="submitted && fval.profile.errors" class="invalid-feedback">
-        <div *ngIf="fval.profile.errors.required">Profil type is required</div>
+        <div *ngIf="fval.profile.errors.required">Profile type is required</div>
       </div>
     </div>
     <!-- Form group Policy -->

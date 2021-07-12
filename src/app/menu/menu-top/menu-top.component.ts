@@ -23,5 +23,7 @@ export class MenuTopComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-
+  addAnEvent() {
+    this.router.navigate(['/addAnEvent']);
+  }
 }

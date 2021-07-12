@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import { EventService} from "../../_services/event.service";
 
 @Component({
   selector: 'app-event-list',
@@ -6,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  items = [];
   pageOfItems: Array<any>;
   pageSize = 8;
+  recEvents = [];
+  errorNotFound= false;
+  @Input() sortParam: string;
 
-  constructor() { }
+
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+    this.getEvents();
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -21,4 +25,43 @@ export class EventListComponent implements OnInit {
     this.pageOfItems = pageOfItems;
   }
 
+  getEvents(){
+    this.eventService.getEvents().subscribe(data => {
+      this.recEvents = data;
+      this.errorNotFound = false;
+    },error => {
+      if(error.status == 404)
+        this.errorNotFound = true;
+      console.log('oops', error);
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    let sortRecord = changes.sortParam.currentValue;
+    if(sortRecord != undefined || sortRecord != null){
+      if(sortRecord.sortBy == 'all'){
+        this.getEvents();
+      }else if (sortRecord.sortBy == "type"){
+        let typeId = sortRecord.id;
+        this.eventService.getEventsByType(typeId).subscribe(data =>{
+          this.recEvents = data;
+          this.errorNotFound = false;
+        },error => {
+          if(error.status == 404)
+            this.errorNotFound = true;
+          console.log('oops', error);
+        });
+      }else if (sortRecord.sortBy == "canal"){
+        let canalId = sortRecord.id;
+        this.eventService.getEventsByCanal(canalId).subscribe(data =>{
+          this.recEvents = data;
+          this.errorNotFound = false;
+        },error => {
+          if(error.status == 404)
+            this.errorNotFound = true;
+          console.log('oops', error);
+        });
+      }
+    }
+  }
 }

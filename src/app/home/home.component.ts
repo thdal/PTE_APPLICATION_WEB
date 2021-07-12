@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MenuLeftComponent} from "../menu/menu-left/menu-left.component";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public currentUser;
+  sortParam:string;
+  @ViewChild(MenuLeftComponent) child;
+
   constructor() {
     this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
   }
@@ -14,4 +18,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  receiveSortingParameter($event) {
+    console.log("obj?")
+    console.log($event)
+    this.sortParam = $event
+  }
+
 }

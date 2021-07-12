@@ -7,9 +7,11 @@ import { User } from '../_models/user';
 export class UserService {
   constructor(private http: HttpClient) { }
 
+  getUserProfiles() {
+    return this.http.get<any>(`userProfiles`);
+  }
+
   register(user: User) {
-    console.log("userformat")
-    console.log(user);
     return this.http.post<any>(`users`, user);
   }
 

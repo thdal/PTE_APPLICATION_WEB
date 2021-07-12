@@ -3,23 +3,32 @@
   <nav id="sidebar">
     <div class="sidebar-header">
       <h3>Search Events</h3>
+      <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon" />
+        <span class="input-group-text border-0" id="search-addon">
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
     </div>
-    <ul class="list-unstyled components">
-      <p>Categories</p>
-      <hr>
+    <ul class="list-unstyled components ul-gl">
       <li>
-        <a href="#">Artistique</a>
+        <!--<a ngDefaultControl (click)="getAllEvents()">Tous les événements</a>-->
       </li>
-      <li>
-        <a href="#">Culturel</a>
-      </li>
-      <li>
-        <a href="#">Sportif</a>
-      </li>
-      <li>
-        <a href="#">Pédagogique</a>
-      </li>
+      <p class="p-subtitle-gl">Categories</p>
+      <div class="div-li-gl">
+        <li *ngFor="let eventType of eventTypesRecord">
+          <a class="a-gl" ngDefaultControl [(ngModel)]="eventType.id" (click)="sortByType(eventType.id)">{{eventType.typeEventName}}</a>
+        </li>
+      </div>
+    </ul>
+    <ul class="list-unstyled components ul-gl">
+      <p class="p-subtitle-gl">Canal </p>
+      <div class="div-li-gl">
+        <li *ngFor="let eventCanal of eventCanalsRecord">
+          <a class="a-gl" ngDefaultControl [(ngModel)]="eventCanal.id" (click)="sortByCanal(eventCanal.id)">{{eventCanal.canalEventName}} </a>
+        </li>
+      </div>
     </ul>
   </nav>
-
 </div>

@@ -12,6 +12,7 @@ import { UserService } from '../_services/user.service';
     '../../assets/css/register.css'  ],
 })
 export class RegisterComponent implements OnInit {
+  userProfilesRecord : [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +26,9 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getUserProfiles();
+    console.log("les profiles");
+    console.log(this.userProfilesRecord);
     this.registerForm = this.formBuilder.group({
       firstName: ['testFname', Validators.required],
       lastName: ['testLname', Validators.required],
@@ -39,11 +43,18 @@ export class RegisterComponent implements OnInit {
 
   get fval() { return this.registerForm.controls; }
 
+  getUserProfiles(){
+    this.userService.getUserProfiles().subscribe(data => {
+      this.userProfilesRecord = data;
+    },error => {
+      console.log('oops', error);
+    });
+  }
+
   onFormSubmit(){
     this.submitted = true;
 // return for here if form is invalid
     if (this.registerForm.invalid) {
-      console.log("return")
       return;
     }
     this.loading = true;

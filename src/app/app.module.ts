@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,6 +19,8 @@ import { MenuTopComponent } from './menu/menu-top/menu-top.component';
 import { MenuLeftComponent } from './menu/menu-left/menu-left.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import {JwPaginationModule} from "jw-angular-pagination";
+import { AddEventComponent } from './event/add-event/add-event.component';
+import { EventFormComponent } from './event/event-form/event-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {JwPaginationModule} from "jw-angular-pagination";
     RegisterComponent,
     MenuTopComponent,
     MenuLeftComponent,
-    EventListComponent
+    EventListComponent,
+    AddEventComponent,
+    EventFormComponent
   ],
   imports: [
     JwPaginationModule,
@@ -36,6 +40,7 @@ import {JwPaginationModule} from "jw-angular-pagination";
     AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module

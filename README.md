@@ -32,3 +32,12 @@ ngx-toastr
 font awesome
 bootstrap
 npm i jw-angular-pagination
+
+Icones du menu gauche :
+
+Freepik
+
+pack d'icons social : https://www.flaticon.com/fr/packs/social-logo-3
+
+Pour les images (coté api)::
+npm install --save connect-multiparty

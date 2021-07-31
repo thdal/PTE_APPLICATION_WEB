@@ -1,0 +1,39 @@
+<div style="background-color: #eaeaea;">
+  <div style="background-color:#eaeaea;" id="outer-div">
+  <div style="text-align: center; margin-top: 25px;" >
+    <h1>{{this.eventOpen.eventName}}</h1>
+  </div>
+</div>
+  <div id="inner-div">
+      <div class="row">
+        <div class="col-md-3 div-value-gl">
+          <img id="output" src="../../../../assets/img/event.png" alt="your image"/>
+        </div>
+        <div class="col-md-9 float-child div-value-gl">
+          <label>Lien du live :</label>
+          <div class="txt-value-gl"><a target="_blank"  href="http://{{this.eventOpen.eventLink}}">{{this.eventOpen.eventLink}}</a></div>
+        </div>
+        <div class="col-md-6 div-value-gl">
+          <label>Date de l'événement :</label>
+          <div class="txt-value-gl">{{this.eventOpen.eventDate | date:"dd-MM-yyyy"}}</div>
+        </div>
+        <div class="col-md-6 float-child div-value-gl">
+          <label>Lieu de l'événement :</label>
+          <div class="txt-value-gl">{{this.eventOpen.eventAddress}}</div>
+        </div>
+
+      <div class="col-md-6 float-child div-value-gl">
+        <label>Type de l'événement :</label>
+        <div class="txt-value-gl">{{this.typeName}}</div>
+      </div>
+      <div class="col-md-6 float-child div-value-gl">
+        <label>Canal de l'événement :</label>
+        <div class="txt-value-gl">{{this.canalName}}</div>
+      </div>
+      <div class="col-md-12 float-child div-value-txt-gl" style="padding-bottom: 20px">
+      <label>Description de l'événement :</label>
+        <textarea disabled class="txt-value-gl txt-area-gl" style="min-height: 105px; word-wrap:break-word;">{{this.eventOpen.eventDescription}}</textarea>
+      </div>
+  </div>
+</div>
+</div>

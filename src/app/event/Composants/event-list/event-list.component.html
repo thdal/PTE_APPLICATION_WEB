@@ -1,0 +1,69 @@
+<div *ngIf="!errorNotFound; then dataFound else dataNotFound"></div>
+<ng-template #dataFound>
+  <div style="min-height:50px; padding-top: 5px; background-color:
+   transparent; position:relative; margin-bottom:10px;" class="row g-0">
+      <div style="background-color:transparent;" class="col-12">
+        <div style="margin-left: 10px; background-color:transparent; position:absolute;left:0px; padding-right: 10px;">
+          <div id="FiltrerParDate">
+            <div style=" left:0px; font-weight:lighter">
+              <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i style="font-weight: bold" class="bi bi-sliders"></i> Filtrer la liste</button>
+              <div *ngIf="dateFilterActive" class="div-filtre-date">Entre : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
+                <span (click)="closeDateFilter();" id="close-btn" style="cursor:pointer;"><i class="bi bi-x"></i></span>
+              </div>
+            </div>
+          </div>
+          <div id="AfficheNbEvents" style="float:left;">
+            <span class="light-span-gl">{{recEvents.length}} événement(s) </span><span class="heavy-span-gl">{{this.sortedBy}}</span><span class="light-span-gl"> trouvé(s)</span>
+          </div>
+        </div>
+        <div style="position:absolute;right:0px; padding-right: 10px; margin-bottom: 20px;">
+          <div style="float:left; margin-right:5px">
+            <span class="light-span-gl">Trier par</span>
+          </div>
+          <select style="float:left; width:78%;"  class="list-select-gl" aria-label="Default select example">
+            <option (click)="sortListAlphaAsc()" selected>ordre alphabétique (A à Z)</option>
+            <option (click)="sortListAlphaDesc()">ordre alphabétique (Z à A)</option>
+            <option (click)="sortListDateDesc()">date (décroissant)</option>
+            <option (click)="sortListDateAsc()">date (croissant)</option>
+           <!--<option value="3">Three</option>-->
+          </select>
+        </div>
+      </div>
+  </div>
+  <!-- CARD -->
+  <div class="row g-0 overflow-auto">
+    <div *ngFor="let item of pageOfItems" class="col-sm-2-gl div-card-parent-gl">
+      <div class="card" style="height: 100%; max-width: 230px;">
+        <div class="div-img-parent-gl">
+          <img *ngIf="!item.eventImg" class="card-img-top list-img-gl" src="../../../../assets/img/calendar.svg" alt="Event image cap">
+          <img *ngIf="item.eventImg" class="card-img-top list-img-gl" src="{{apiUrl}}eventId{{item.id}}/eventImg.jpg" alt="Event image cap">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item.eventName}}</h5>
+          <p class="card-text p-description-gl" style="min-height: 100px;">{{item.eventDescription}}</p>
+        </div>
+        <div class="card-footer">
+          <div class="div-btn-gl">
+            <button style="text-decoration: none;" class="btn btn-link" (click)="showEvent(item.id)">Afficher</button>
+            <button class="btn btn-edit-gl" *ngIf="userId == item.userId || profileId == 3" (click)="setEvent(item.id)"><i class="bi bi-pencil-fill edit-icon"></i></button>
+            <button class="btn btn-trash-gl" *ngIf="userId == item.userId || profileId == 3" (click)="delEvent(item.id)"><i class="bi bi-trash-fill trash-icon"></i></button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Date : {{this.item.eventDate | date:"dd-MM-yyyy"}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;" class="row g-0">
+        <div  [ngStyle]="{'display': recEvents.length <= 8 ? 'none' : 'block' }" class="pb-0 pt-3">
+          <jw-pagination-gl style="position:absolute; right:0px; padding-right: 10px;" [items]="recEvents" [pageSize]="pageSize" (changePage)="onChangePage($event)"></jw-pagination-gl>
+        </div>
+  </div>
+</ng-template>
+<ng-template #dataNotFound>
+<div>
+  <h1>Erreur 404</h1>
+  Il semble qu'aucun événement ne correspond à votre recherche
+</div>
+</ng-template>

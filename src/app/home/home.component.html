@@ -5,8 +5,8 @@
     <!-- Left bar -->
     <app-menu-left (sortEvent)="receiveSortingParameter($event)" ></app-menu-left>
   </div>
-  <div class="col-10 overflow-auto" style="padding: 0; height:100vh; background-color:#eaeaea;">
-    <app-event-list [sortParam]="sortParam" ></app-event-list>
+  <div class="col-10 overflow-auto div-col-10-gl">
+    <app-event-list [myEvents]="false"  [sortParam]="sortParam" ></app-event-list>
   </div>
 </div>
 

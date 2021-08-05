@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_helpers/auth.guard';
 
 /**Components */
-import { LoginComponent } from './user/Pages/login/login.component';
-import { RegisterComponent } from './user/Pages/register/register.component';
-import { HomeComponent } from './home/home.component';
-import {AddEventComponent} from "./event/Pages/add-event/add-event.component";
-import {MyEventsComponent} from "./event/Pages/my-events/my-events.component";
-import {SetEventComponent} from "./event/Pages/set-event/set-event.component";
-import {ShowEventComponent} from "./event/Pages/show-event/show-event.component";
-import {EditUserProfileComponent} from "./user/Pages/edit-user-profile/edit-user-profile.component";
-import {UserAdministrationComponent} from "./user/Pages/user-administration/user-administration.component";
+import { LoginComponent } from './Components/user/Pages/login/login.component';
+import { RegisterComponent } from './Components/user/Pages/register/register.component';
+import { HomeComponent } from './Components/home/home.component';
+import {AddEventComponent} from "./Components/event/Pages/add-event/add-event.component";
+import {MyEventsComponent} from "./Components/event/Pages/my-events/my-events.component";
+import {SetEventComponent} from "./Components/event/Pages/set-event/set-event.component";
+import {ShowEventComponent} from "./Components/event/Pages/show-event/show-event.component";
+import {EditUserProfileComponent} from "./Components/user/Pages/edit-user-profile/edit-user-profile.component";
+import {UserAdministrationComponent} from "./Components/user/Pages/user-administration/user-administration.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -47,12 +47,12 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: HomeComponent }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

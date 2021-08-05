@@ -33,6 +33,18 @@ export class AuthenticationService {
       }));
   }
 
+  visite() {
+    // on se créer un compte utilisateur à la volée pour pouvoir visiter le site
+    // avec le minimum d'info
+    let user = new User();
+    user.id = null
+    user.profile_id = 2;
+    user.isBanned = false;
+    user.userImg = false;
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
+
   logout() {
 // remove user data from local storage for log out
     localStorage.removeItem('currentUser');

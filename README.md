@@ -41,3 +41,37 @@ pack d'icons social : https://www.flaticon.com/fr/packs/social-logo-3
 
 Pour les images (coté api)::
 npm install --save connect-multiparty
+
+Partage réseaux:
+
+npm i ngx-sharebuttons
+npm i @angular/cdk
+npm i font-awesome
+npm i @fortawesome/angular-fontawesome        
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/fontawesome-common-types
+npm install @fortawesome/free-brands-svg-icons
+npm install @fortawesome/free-solid-svg-icons
+
+Créer le fichier style.scss y importer les fichiers de theme du module ngx-sharebuttons. importer style.scss dans angular.json.
+
+--doc 
+\
+https://www.npmjs.com/package/ngx-sharebuttons
+https://github.com/MurhafSousli/ngx-sharebuttons/wiki
+\
+--themes d'icons 
+\
+https://ngx-sharebuttons.netlify.app/#/themes
+\
+--live test
+\
+https://stackblitz.com/edit/ngx-sharebuttons-nzwzb7?file=src%2Fapp%2Fapp.component.html
+
+
+--hashage
+
+bcrypt server side
+ssl  
+activation ssl :
+https://www.wistee.fr/installer-ssl/apache2-mod-ssl.html

@@ -7,7 +7,7 @@ import { User } from '../_models/user';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  //Retourne id/nom des profiles (Administrateur, Organisateur, Visiteur)
+  //Retourne id/nom des profiles (Administrateur, Organisateur, Participant)
   //Utile pour l'affichage dans l'inscription principalement
   getUserProfiles() {
     return this.http.get<any>(`userProfiles`);
@@ -45,7 +45,7 @@ export class UserService {
     return this.http.put<any>(`updateUserFromAdmin/${userId}`, user);
   }
 
-  //Update un profile utilisateur (Organisateur, Visiteur..)
+  //Update un profile utilisateur (Organisateur, Participant..)
   updateUserProfile(userId, profileId){
     return this.http.put<any>(`updateUserProfile/${userId}`, {profileId: profileId});
   }

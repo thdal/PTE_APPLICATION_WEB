@@ -120,7 +120,7 @@ export class EventFormComponent implements OnInit {
       this.eventService.postEvent(this.eventForm.value, formData).subscribe(
         (data)=>{
           this.loading = false;
-          alert('Event posted successfully!!');
+          //alert('Event posted successfully!!');
           this.router.navigate(['']);
         },
         (error)=>{
@@ -132,7 +132,7 @@ export class EventFormComponent implements OnInit {
       this.eventService.updateEvent(this.eventId, this.eventForm.value, formData).subscribe(
         (data)=>{
           this.loading = false;
-          alert('Event updated successfully!!');
+         // alert('Event updated successfully!!');
           this.router.navigate(['/eventsList', this.currentUser.id]);
           window.location.reload();
         },

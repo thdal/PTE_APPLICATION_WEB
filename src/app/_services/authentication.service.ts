@@ -21,7 +21,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`login`, { email, password })
+    return this.http.post<any>(`api/login`, { email, password })
       .pipe(map(user => {
         if (user) {//Token ?
           // store user details in local storage to keep user logged in

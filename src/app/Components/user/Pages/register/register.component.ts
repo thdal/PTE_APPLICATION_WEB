@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
     this.newUser.isBanned = false;//Init la variable isBanned
     this.userService.register(this.newUser).subscribe(
       (data)=>{
-        alert('User Registered successfully!!');
+        //alert('User Registered successfully!!');
         this.router.navigate(['/login']);
       },
       (error)=>{
@@ -75,4 +75,12 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  passwordVerification(password) {
+    var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{12,50}$/;
+    //Doit contenir au moins un nombre et un caractère spécial
+    if(password == null || password.length < 12 || !regularExpression.test(password)){
+      return false;
+    }
+    return true;
+  }
 }

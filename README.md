@@ -75,3 +75,19 @@ bcrypt server side
 ssl  
 activation ssl :
 https://www.wistee.fr/installer-ssl/apache2-mod-ssl.html
+
+
+//Charte graphique :
+
+1\
+https://www.google.com/imgres?imgurl=https%3A%2F%2F99designs-blog.imgix.net%2Fblog%2Fwp-content%2Fuploads%2F2016%2F02%2Fcharte-graphique.png%3Fauto%3Dformat%26q%3D60%26fit%3Dmax%26w%3D930&imgrefurl=https%3A%2F%2F99designs.fr%2Fblog%2Fconseils-design%2Fcomment-creer-une-charte-graphique-pour-votre-marque%2F&tbnid=aA6AfJYTyOe3hM&vet=10CBUQxiAoBWoXChMImPrI7byc8gIVAAAAAB0AAAAAEAs..i&docid=Kn4KuONR5b0nKM&w=930&h=477&itg=1&q=charte%20graphique%20exemple&client=firefox-b-d&ved=0CBUQxiAoBWoXChMImPrI7byc8gIVAAAAAB0AAAAAEAs
+
+2\
+https://www.adviz.ca/wp-content/uploads/2017/06/charte-graphique-00-web-b25.png
+
+
+
+https://i.pinimg.com/originals/6e/f4/a3/6ef4a3968c6820199f86241767f60646.png
+
+
+//#f9f9f9

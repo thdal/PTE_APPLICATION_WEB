@@ -101,7 +101,7 @@ export class ProfileFormComponent implements OnInit {
     this.userService.updateUser(this.userId, this.userForm.value, formData).subscribe(
       (data)=>{
         this.loading = false;
-        alert('User updated successfully!!');
+       // alert('User updated successfully!!');
         //Je mets à jour le localStorage pour afficher l'image dans le menu top
         var user = JSON.parse(localStorage.getItem('currentUser'));
         user.userImg = 1;

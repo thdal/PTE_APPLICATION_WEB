@@ -34,7 +34,11 @@ import { ProfileFormComponent } from './Components/user/Composants/profile-form/
 import { EditUserProfileComponent } from './Components/user/Pages/edit-user-profile/edit-user-profile.component';
 import { UsersListComponent } from './Components/user/Composants/users-list/users-list.component';
 import { UserAdministrationComponent } from './Components/user/Pages/user-administration/user-administration.component';
-import { EventNotFoundComponent } from './Components/event-not-found/event-not-found.component';
+import { EventNotFoundComponent } from './Components/event/Composants/event-not-found/event-not-found.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { PrivacyPolicyComponent } from './Components/resources/Pages/privacy-policy/privacy-policy.component';
+import { LegalNoticesComponent } from './Components/resources/Pages/legal-notices/legal-notices.component';
+import { CguComponent } from './Components/resources/Pages/cgu/cgu.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { EventNotFoundComponent } from './Components/event-not-found/event-not-f
     EditUserProfileComponent,
     UsersListComponent,
     UserAdministrationComponent,
-    EventNotFoundComponent
+    EventNotFoundComponent,
+    FooterComponent,
+    PrivacyPolicyComponent,
+    LegalNoticesComponent,
+    CguComponent,
   ],
   imports: [
     JwPaginationModule,

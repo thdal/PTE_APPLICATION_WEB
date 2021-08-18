@@ -72,3 +72,9 @@ nav .navbar-nav li .nav-admin-link-gl{
   text-decoration: none;
   color: rgba(239, 239, 239, 0.98);
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}

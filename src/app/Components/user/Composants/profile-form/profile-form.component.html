@@ -10,8 +10,8 @@
           <!--<label style="display:block;" for="imgInp">Choose File</label>-->
           <input accept="image/*" type='file' id="imgInp" class="inputfile form-input-gl" (change)="handleFileInput($event.target.files)"/>
           <label class="form-label-gl" for="imgInp"><i class="bi bi-file-earmark-arrow-up"></i> Choisir une image ...</label>
-          <img width="200px" height="200px" *ngIf="!userImg" id="output" [src]="getProfileImage()" alt="event image"/>
-          <img width="200px" height="200px" id="outputImgSet" *ngIf="userImg" src="{{apiUrl}}userId{{userId}}/userImg.jpg" alt="event image from server"/>
+          <img width="200px" height="200px" *ngIf="!userImg" id="output" [src]="getProfileImage()" alt="User image"/>
+          <img width="200px" height="200px" id="outputImgSet" *ngIf="userImg" src="{{apiUrl}}userId{{userId}}/userImg.jpg" alt="User image from server"/>
         </div>
         <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
           <label class="form-label-gl" for="inputFirstName">Prénom :</label>
@@ -32,7 +32,9 @@
       </div>
       <div style="text-align:right; padding-right:40px; padding-bottom: 20px; margin-top:20px;">
         <button style="cursor:pointer; margin-top:20px; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Modifier son profil</button>
+        <button style="cursor:pointer; margin-top:20px; text-decoration: none; font-size:20px" type="button" (click)="delRow()"  class="btn btn-trash-gl">Supprimer son profil</button>
       </div>
     </form>
   </div>
 </div>
+

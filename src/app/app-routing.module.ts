@@ -12,12 +12,27 @@ import {SetEventComponent} from "./Components/event/Pages/set-event/set-event.co
 import {ShowEventComponent} from "./Components/event/Pages/show-event/show-event.component";
 import {EditUserProfileComponent} from "./Components/user/Pages/edit-user-profile/edit-user-profile.component";
 import {UserAdministrationComponent} from "./Components/user/Pages/user-administration/user-administration.component";
+import {PrivacyPolicyComponent} from "./Components/resources/Pages/privacy-policy/privacy-policy.component";
+import {LegalNoticesComponent} from "./Components/resources/Pages/legal-notices/legal-notices.component";
+import {CguComponent} from "./Components/resources/Pages/cgu/cgu.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'cgu',
+    component: CguComponent
+  },
+  {
+    path: 'privacyPolicy',
+    component: PrivacyPolicyComponent
+  },
+  {
+    path: 'legalNotices',
+    component: LegalNoticesComponent
   },
   {
     path: 'addAnEvent',

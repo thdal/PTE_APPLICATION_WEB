@@ -9,3 +9,6 @@ export class User {
   genre_id: number;
   userImg: boolean;
 }
+
+
+

@@ -43,6 +43,10 @@ export class MenuTopComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
+  signUp() {
+    this.authenticationService.logout();
+    this.router.navigate(['/register']);
+  }
   //Call la route de la page de l'ajout d'un événement formEvent
   addAnEvent() {
     this.router.navigate(['/addAnEvent']);
@@ -54,6 +58,10 @@ export class MenuTopComponent implements OnInit {
   //Call la route de l'édition du profil utilisateur
   editUserProfile(){
     this.router.navigate(['/editProfile', this.currentUser.id]);
+  }
+  //Call la route de la page sur la politique de confidentialité RGPD
+  goToPrivacyPolicy(){
+    //this.router.navigate(['/editProfile', this.currentUser.id]);
   }
   //Call la route de la gestion des utilisateurs (route admin)
   manageUsers(){

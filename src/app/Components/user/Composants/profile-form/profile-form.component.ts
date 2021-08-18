@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../../_services/user.service";
 import {environment} from "../../../../../environments/environment";
 import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile-form',
@@ -23,7 +24,7 @@ export class ProfileFormComponent implements OnInit {
   loading = false;
   mobile = false;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder,private toastr: ToastrService,) {
+  constructor(private router: Router, private userService: UserService, private formBuilder: FormBuilder,private toastr: ToastrService,) {
     this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
     this.userId = this.currentUser.id;
     if(this.currentUser.profile_id == 1){
@@ -36,6 +37,7 @@ export class ProfileFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.currentUser);
     if (window.screen.width <= 480) { // 768px portrait
       this.mobile = true;
     }
@@ -61,6 +63,15 @@ export class ProfileFormComponent implements OnInit {
       if (error.status == 404)
         console.log('oops', error);
     });
+  }
+
+  delRow() {
+      //Il y'a une contrainte d'intégrité, on supprime d'abord le profile, ensuite l'utilisateur de la bdd.
+      this.userService.removeUserProfile(this.currentUser.id, this.currentUser.profile_id).subscribe(data => {
+        this.userService.removeUser(this.currentUser.id).subscribe(data => {
+            this.router.navigate(['/login']); // navigate to same route
+        });
+      });
   }
 
   getUserProfiles(){
@@ -96,7 +107,7 @@ export class ProfileFormComponent implements OnInit {
       formData.append("userImgFile", this.fileToUpload);
       this.userForm.addControl('userImg', this.formBuilder.control(true));
     }else{
-      this.userForm.addControl('userImg', this.formBuilder.control(this.currentUser.eventImg));
+      this.userForm.addControl('userImg', this.formBuilder.control(this.currentUser.userImg || false));
     }
     this.userService.updateUser(this.userId, this.userForm.value, formData).subscribe(
       (data)=>{
@@ -104,7 +115,14 @@ export class ProfileFormComponent implements OnInit {
        // alert('User updated successfully!!');
         //Je mets à jour le localStorage pour afficher l'image dans le menu top
         var user = JSON.parse(localStorage.getItem('currentUser'));
-        user.userImg = 1;
+        if(this.currentUser.userImg)
+          user.userImg = this.currentUser.userImg
+        else{
+          if(this.fileToUpload)
+            user.userImg = 1;
+          else
+            user.userImg = 0;
+        }
         localStorage.setItem('currentUser', JSON.stringify(user));
         window.location.reload();
       },
@@ -115,20 +133,20 @@ export class ProfileFormComponent implements OnInit {
     )
   }
   //Image dynamique en fonction du genre et du profile
-  //Genres: 1 = femme, 2 = Homme
+  //Genres: 1 = Femme, 2 = Homme
   //Profiles: 1=Organisateur, 2=Participant, 3=Administrateur
   getProfileImage() {
     if (this.currentUser.genre_id == 2) {
       if(this.currentUser.profile_id != 3){
-        return 'assets/img/icons/Profiles/avatar.png';
+        return 'assets/img/icons/user/Profiles/man.svg';
       }else{
-        return 'assets/img/icons/Profiles/man3.svg';
+        return 'assets/img/icons/user/Profiles/man3.svg';
       }
     } else {
       if(this.currentUser.profile_id != 3){
-        return 'assets/img/icons/Profiles/woman.svg';
+        return 'assets/img/icons/user/Profiles/woman.svg';
       }else{
-        return 'assets/img/icons/Profiles/woman3.svg';
+        return 'assets/img/icons/user/Profiles/woman3.svg';
       }
     }
   }

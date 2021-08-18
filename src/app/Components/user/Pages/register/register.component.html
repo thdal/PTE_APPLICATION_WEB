@@ -5,33 +5,33 @@
     <hr>
     <div>
       <div class="form-group float-child">
-        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" placeholder="Prénom"/>
+        <input id="input-firstName" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" placeholder="Prénom"/>
         <div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
           <div *ngIf="fval.firstName.errors.required">Le prénom est requis</div>
         </div>
       </div>
       <div class="form-group float-child">
-        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" placeholder="Nom"/>
+        <input id="input-lastName" type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" placeholder="Nom"/>
         <div *ngIf="submitted && fval.lastName.errors" class="invalid-feedback">
           <div *ngIf="fval.lastName.errors.required">Le nom est requis</div>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Email"/>
+      <input id="input-email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Email"/>
       <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
         <div *ngIf="fval.email.errors.required">L'email est requis</div>
-        <div *ngIf="fval.email.errors.email">Entrez une adresse mail valide</div>
+        <div *ngIf="fval.email.errors.email"><span id="span-mail-invalide">Entrez une adresse mail valide</span></div>
       </div>
     </div>
     <div class="form-group">
-      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Mot de passe"/>
+      <input id="input-password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Mot de passe"/>
       <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
         <div *ngIf="fval.password.errors.required">Le mot de passe est requis</div>
         <div *ngIf="fval.password.errors.minlength">Le mot de passe doit être d'au moins 6 caractères</div>
       </div>    </div>
     <div class="form-group">
-      <input type="password" formControlName="confirmPassword" class="form-control" name="confirm_password" placeholder="Confirmation mot de passe" [ngClass]="{ 'is-invalid': submitted && fval.confirmPassword.errors }" required="required">
+      <input id="input-passwordConf" type="password" formControlName="confirmPassword" class="form-control" name="confirm_password" placeholder="Confirmation mot de passe" [ngClass]="{ 'is-invalid': submitted && fval.confirmPassword.errors }" required="required">
       <div *ngIf="submitted && fval.confirmPassword.errors" class="invalid-feedback">
         <div *ngIf="fval.confirmPassword.errors.required">Le mot de passe de confirmation est requis</div>
         <div *ngIf="fval.confirmPassword.errors.mustMatch">Les mots de passe ne correspondent pas</div>
@@ -42,12 +42,12 @@
     <div class="form-group float-child">
         <label>Genre :</label><br><br>
         <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.genre_id.errors }">
-          <input  class="form-check-input" type="radio" formControlName="genre_id" id="inlineRadioGenre1" value="1" >
-          <label for="inlineRadioGenre1" class="form-check-label">Femme</label>
+          <input id="input-radio-genre-1"  class="form-check-input" type="radio" formControlName="genre_id" value="1" >
+          <label for="input-radio-genre-1" class="form-check-label">Femme</label>
         </div>
         <div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.genre_id.errors }">
-          <input  class="form-check-input" type="radio" formControlName="genre_id" id="inlineRadioGenre2" value="2" >
-          <label for="inlineRadioGenre2" class="form-check-label">Homme</label>
+          <input id="input-radio-genre-2"  class="form-check-input" type="radio" formControlName="genre_id" value="2" >
+          <label for="input-radio-genre-2" class="form-check-label">Homme</label>
         </div>
         <!--<div class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile.errors }">
           <input  class="form-check-input" type="radio" formControlName="genre" id="inlineRadioGenre3" value="3" >
@@ -63,20 +63,25 @@
       <label>Profil d'utilisateur :</label><br><br>
       <div style="min-height: 0px;" *ngFor="let userProfile of userProfilesRecord" class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile_id.errors }">
         <div *ngIf="userProfile.id != 3">
-          <input  class="form-check-input" type="radio" formControlName="profile_id" id="inlineRadio{{userProfile.id}}" value="{{userProfile.id}}" >
-          <label class="form-check-label" for="inlineRadio{{userProfile.id}}">{{userProfile.profile_name}}</label>
+          <input  class="form-check-input" type="radio" formControlName="profile_id" id="input-radio-profile-{{userProfile.id}}" value="{{userProfile.id}}" >
+          <label class="form-check-label" for="input-radio-profile-{{userProfile.id}}">{{userProfile.profile_name}}</label>
         </div>
       </div>
       <div *ngIf="submitted && fval.profile_id.errors" class="invalid-feedback">
         <div *ngIf="fval.profile_id.errors.required">Veuillez choisir un profil d'utilisateur</div>
       </div>
     </div>
-    <!-- Form group Policy
+    <!-- Form group Policy-->
     <div class="form-group">
-      <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
-    </div>-->
+      <div  [ngClass]="{ 'is-invalid': submitted && !cguAccepted }">
+        <label class="checkbox-inline"><input id="input-chk-rgpd" (change)="changed($event)" type="checkbox" required="required"> En vous inscrivant, vous acceptez nos <a style="cursor:pointer;" (click)="goToCgu();">Conditions générales d'utilisation</a>. Découvrez comment nous recueillons, utilisons et partageons vos données en lisant notre<a style="cursor:pointer;" (click)="goToPrivacyPolicy();"> Politique de confidentialité.</a> (RGPD)</label>
+        <div *ngIf="submitted && !cguAccepted" style="font-size: 0.875em;color:#dc3545;">
+          <div *ngIf="!cguAccepted"><span id="rgpd-error-message">Vous devez accepter les conditions générales d'utilisation ainsi que notre politique de confidentialité pour pouvoir vous enregistrer.</span></div>
+        </div>
+      </div>
+    </div>
     <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">
+      <button id="btn-submit" [disabled]="loading" class="btn btn-primary">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         S'inscrire
       </button>

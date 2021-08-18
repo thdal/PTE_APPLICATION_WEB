@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  errorService = false;
+  errorMsg = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,7 +50,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error => {
-          this.toastr.error(error.error.message, 'Error');
+          //this.toastr.error(error.error.message, 'Error');
+          console.log(error);
+          this.errorMsg = error.error.message;
+          this.errorService = true;
           this.loading = false;
         });
   }

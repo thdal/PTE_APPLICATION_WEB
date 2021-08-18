@@ -5,27 +5,27 @@
         <img src="../../assets/img/user.svg" alt="Avatar">
         <!--<i class="bi bi-person"></i>-->
       </div>
-      <h2 class="text-center">Connexion</h2>
+      <h2 id="login-title" class="text-center">Connexion</h2>
       <div class="form-group" style="padding-bottom: 10px">
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Email"/>
+        <input id="input-email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Email"/>
         <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
           <div *ngIf="fval.email.errors.required">L'email est requis</div>
           <div *ngIf="fval.email.errors.email">Entrez une adresse mail valide</div>
         </div>
       </div>
       <div class="form-group" style="padding-bottom: 10px">
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Mot de passe" />
+        <input id="input-password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Mot de passe" />
         <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
           <div *ngIf="fval.password.errors.required">Le mot de passe est requis</div>
         </div>
       </div>
       <div class="form-group" style="padding-bottom: 10px">
-        <button [disabled]="loading" class="btn btn-primary btn-login" style="width: 100%; margin-bottom:0px;">
+        <button id="btn-submit" [disabled]="loading" class="btn btn-primary btn-login" style="width: 100%; margin-bottom:0px;">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
           Se connecter
         </button>
         <hr>
-        <button routerLink="/register" type="button" class="btn btn-success btn-signup" style="width: 100%; margin-top:0px;">
+        <button id="btn-register" routerLink="/register" type="button" class="btn btn-success btn-signup" style="width: 100%; margin-top:0px;">
           Créer un compte
         </button>
       </div>
@@ -35,6 +35,9 @@
         <a href="#" class="pull-xs-right" style="position:absolute; right:0px;">Forgot Password?</a>
       </div>-->
     </form>
+      <div  *ngIf="submitted && errorService" style="font-size: 0.875em;color:#dc3545;">
+        <div style="text-align: center;" *ngIf="errorService"><span id="span-error-msg">{{this.errorMsg}}</span></div>
+      </div>
     <p class="text-center small">Pas encore inscrit ? <a style="cursor:pointer;" (click)="visiteWebSite()"> Visitez l'application ici !</a></p>
   </div>
 </div>

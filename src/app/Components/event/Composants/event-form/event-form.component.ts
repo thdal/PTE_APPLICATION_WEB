@@ -41,11 +41,11 @@ export class EventFormComponent implements OnInit {
       this.mobile = true;
     }
       this.eventForm = this.formBuilder.group({
-        eventName: ['bubu', Validators.required],
-        eventDate: ['2012-12-01', Validators.required],
-        eventLink: ['bubu', Validators.required],
-        eventAddress: ['bubu', Validators.required],
-        eventDescription: ['bubu'],
+        eventName: ['', Validators.required],
+        eventDate: ['', Validators.required],
+        eventLink: ['', Validators.required],
+        eventAddress: ['', Validators.required],
+        eventDescription: [''],
         typeEventId: [1, Validators.required],
         canalEventId: [1, Validators.required]
     });

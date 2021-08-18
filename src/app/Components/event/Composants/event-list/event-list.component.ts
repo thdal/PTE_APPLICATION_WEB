@@ -212,7 +212,6 @@ export class EventListComponent implements OnInit {
   //On trie la list par date rescent first
   sortListDateAsc() {
     this.recEvents = this.sortArrayAscDate(this.recEvents);
-    //this.recEvents.sort((a, b) => new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime());
     this.pageOfItems = this.recEvents.slice(0, this.pageSize);
     this.jwPagination.setPage(1);
   }
@@ -220,7 +219,6 @@ export class EventListComponent implements OnInit {
   //On trie la list par date oldest first
   sortListDateDesc() {
     this.recEvents = this.sortArrayDescDate(this.recEvents);
-    //this.recEvents.sort((b, a) => new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime());
     this.pageOfItems = this.recEvents.slice(0, this.pageSize);
     this.jwPagination.setPage(1);
   }
@@ -228,7 +226,6 @@ export class EventListComponent implements OnInit {
   //On trie la list par ordre alphabetique ascendant
   sortListAlphaAsc() {
     this.recEvents = this.sortArrayAscAlpha(this.recEvents);
-    //this.recEvents.sort((a, b) => a.eventName.localeCompare(b.eventName));
     this.pageOfItems = this.recEvents.slice(0, this.pageSize);
     this.jwPagination.setPage(1);
   }
@@ -236,24 +233,26 @@ export class EventListComponent implements OnInit {
   //On trie la list par ordre alphabetique descendant
   sortListAlphaDesc() {
     this.recEvents = this.sortArrayDescAlpha(this.recEvents);
-    //this.recEvents.sort((b, a) => a.eventName.localeCompare(b.eventName));
     this.pageOfItems = this.recEvents.slice(0, this.pageSize);
     this.jwPagination.setPage(1);
   }
 
-  //Méthode de tri sur les tableaux
+  //Tri sur tableau d'objets Alpha desc
   sortArrayDescAlpha(Array) {
     var sortedArray = Array.sort((b, a) => a.eventName.localeCompare(b.eventName));
     return sortedArray;
   }
+  //Tri sur tableau d'objets Alpha asc
   sortArrayAscAlpha(Array) {
     var sortedArray = Array.sort((a, b) => a.eventName.localeCompare(b.eventName));
     return sortedArray;
   }
+  //Tri sur tableau d'objets date desc
   sortArrayDescDate(Array) {
     var sortedArray = Array.sort((b, a) => new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime());
     return sortedArray;
   }
+  //Tri sur les tableau d'objets date desc
   sortArrayAscDate(Array) {
     var sortedArray = Array.sort((a, b) => new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime());
     return sortedArray;

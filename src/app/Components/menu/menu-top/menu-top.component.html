@@ -21,22 +21,22 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img *ngIf="!currentUser.userImg"
                [src]="getTopImage()"
-               class="rounded-circle" width="50" height="50" alt="user image"/>
-          <!-- true = 1 -->
-          <img *ngIf="currentUser.userImg" class="rounded-circle" width="50" height="50" src="{{apiUrl}}userId{{currentUser.id}}/userImg.jpg" alt="user image from server"/>
+               class="rounded-circle" width="50" height="50" alt="User image"/>
+          <!-- false == 0 -->
+          <img *ngIf="currentUser.userImg" class="rounded-circle" width="50" height="50" src="{{apiUrl}}userId{{currentUser.id}}/userImg.jpg" alt="User image from server"/>
         </a>
         <div class="dropdown-menu" style="right: 0; left: auto;" aria-labelledby="navbarDropdownMenuLink">
           <!--<a class="dropdown-item" href="#">Dashboard</a>
           [style]="currentUser.profile_id != 3 ? ':hover{background-color:red;}' : ':hover{background-color:red;}'"
           -->
-          <a style="cursor:pointer;" class="dropdown-item" (click)="editUserProfile();"><i class="bi bi-sliders"></i> Éditer son profil</a>
+          <a style="cursor:pointer;" class="dropdown-item" (click)="editUserProfile();"><i class="bi bi-gear"></i> Éditer son profil</a>
           <a *ngIf="currentUser" class="dropdown-item" style="cursor:pointer;"(click)="logout()">
             <i class="bi bi-door-open"></i> Se déconnecter</a>
         </div>
       </li>
-      <li *ngIf="!currentUser.id" class="nav-item" style="position:absolute; right:10px">
-          <a *ngIf="currentUser" class="a-logout-visiteur-gl" style="cursor:pointer;" (click)="logout()">
-            <span style="font-size:20px;">Se déconnecter </span> <i class="bi bi-door-open"></i></a>
+      <li *ngIf="!currentUser.id" class="nav-item" style="position:absolute; right:5px">
+          <a *ngIf="currentUser" class="a-logout-visiteur-gl" style="padding: 0px 10px;cursor:pointer;border:1px solid white; border-radius:50px;" (click)="signUp()">
+            <span>S'inscrire</span></a>
       </li>
     </ul>
   </div>

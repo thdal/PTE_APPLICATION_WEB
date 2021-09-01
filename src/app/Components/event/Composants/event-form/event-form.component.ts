@@ -43,6 +43,7 @@ export class EventFormComponent implements OnInit {
       this.eventForm = this.formBuilder.group({
         eventName: ['', Validators.required],
         eventDate: ['', Validators.required],
+        eventHour: [''],
         eventLink: ['', Validators.required],
         eventAddress: ['', Validators.required],
         eventDescription: [''],
@@ -80,6 +81,7 @@ export class EventFormComponent implements OnInit {
         this.eventImg = (data.eventImg == 0) ? false : true ;
         this.eventForm.controls.eventName.setValue(data.eventName);
         this.eventForm.controls.eventDate.setValue(this.datePipe.transform(data.eventDate,"yyyy-MM-dd"));
+        this.eventForm.controls.eventHour.setValue(data.eventHour);
         this.eventForm.controls.typeEventId.setValue(data.typeEventId);
         this.eventForm.controls.canalEventId.setValue(data.canalEventId);
         this.eventForm.controls.eventLink.setValue(data.eventLink);

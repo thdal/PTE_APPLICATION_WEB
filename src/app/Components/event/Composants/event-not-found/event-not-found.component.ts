@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../../../_services/authentication.service";
 import {User} from "../../../../_models/user";
 import {Router} from "@angular/router";
@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 })
 export class EventNotFoundComponent implements OnInit {
   currentUser: User;
+  @Input() eventNotFound: string;
+  eventNotFoundStr = "";
 
   constructor(private router: Router,private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);

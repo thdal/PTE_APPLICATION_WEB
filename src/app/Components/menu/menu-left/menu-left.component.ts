@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {EventService} from "../../../_services/event.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -13,8 +14,21 @@ export class MenuLeftComponent implements OnInit {
   @Output() sortEvent = new EventEmitter<any>();
   iconHeight = 25;
   iconWidth = 25
+  //Servira à afficher le bouton cliqué
+  selectedCatIndex: number = null;
+  selectedCanalIndex: number = null;
+  getAllSelected: boolean = false;
+  getAllOfTheDaySelected: boolean = false;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService,private route: ActivatedRoute,
+              private router: Router) {
+      if (typeof this.route.component !== "string") {
+        //Double test
+        if(this.route.component.name == 'HomeComponent' || this.route.snapshot.url.length == 0){
+          this.getAllOfTheDaySelected = !this.getAllOfTheDaySelected;
+        }
+      }
+  }
 
   ngOnInit(): void {
     this.getEventTypes();
@@ -49,11 +63,15 @@ export class MenuLeftComponent implements OnInit {
   }
   //On récupére tous les évenements
   getAllEvents(){
+    this.resetActivatedClass();
+    this.getAllSelected = !this.getAllSelected;
     let objSort = {getAll: true}
     this.sortEventList(objSort);
   }
   //On récupére les événements du jour seulements
   getEventsOfTheDay(){
+    this.resetActivatedClass();
+    this.getAllOfTheDaySelected = !this.getAllOfTheDaySelected;
     let objSort = {getEventsOfTheDay: true}
     this.sortEventList(objSort);
   }
@@ -74,6 +92,32 @@ export class MenuLeftComponent implements OnInit {
   // et pouvoir les afficher car il n'aime pas les accent
   removeAccent(str){
     return str.replace(new RegExp(/[èéêë]/g),"e");
+  }
+
+  activateClass(subModule){
+    subModule.active = !subModule.active;
+  }
+
+
+  setCatIndex(index: number) {
+    this.resetActivatedClass();
+    this.selectedCatIndex = index;
+  }
+
+  setCanalIndex(index: number) {
+    this.resetActivatedClass();
+    this.selectedCanalIndex = index;
+  }
+
+  resetActivatedClass(){
+    if(this.selectedCanalIndex)
+      this.selectedCanalIndex = null;
+    if(this.selectedCatIndex)
+      this.selectedCatIndex = null;
+    if(this.getAllSelected)
+      this.getAllSelected = false;
+    if(this.getAllOfTheDaySelected)
+      this.getAllOfTheDaySelected = false;
   }
 
 }

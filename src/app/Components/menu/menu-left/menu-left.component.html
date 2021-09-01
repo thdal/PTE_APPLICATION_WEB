@@ -13,14 +13,14 @@
     </div>
     <ul class="list-unstyled components ul-gl">
       <div class="div-li-gl">
-        <li class="li-gl">
-          <a class="a-gl" ngDefaultControl (click)="getAllEvents()"><img src="../../../../assets/img/icons/left-menu/all.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Tous les événements</a>
-          <a class="a-gl" ngDefaultControl (click)="getEventsOfTheDay()"><img src="../../../../assets/img/icons/left-menu/24-hours.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Évenements du jour</a>
+        <li  class="li-gl">
+          <a [class.li-a-active-gl]="getAllSelected" class="a-gl" ngDefaultControl (click)="getAllEvents()"><img src="../../../../assets/img/icons/left-menu/all.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Tous les événements</a>
+          <a [class.li-a-active-gl]="getAllOfTheDaySelected" class="a-gl" ngDefaultControl (click)="getEventsOfTheDay()"><img src="../../../../assets/img/icons/left-menu/24-hours.svg" width="{{iconWidth}}" height="{{iconHeight}}"> Évenements du jour</a>
         </li>
       </div>
       <p class="p-subtitle-gl">Categories</p>
       <div class="div-li-gl">
-        <li class="li-gl" *ngFor="let eventType of eventTypesRecord">
+        <li class="li-gl" *ngFor="let eventType of eventTypesRecord; let i = index" [class.li-a-active-gl]="selectedCatIndex === i" (click)="setCatIndex(i)">
           <a class="a-gl" ngDefaultControl [(ngModel)]="eventType.id" (click)="sortByType(eventType.id, eventType.typeEventName)"><img src="../../../assets/img/icons/left-menu/Types/{{removeAccent(eventType.typeEventName)}}.svg" width="{{iconWidth}}" height="{{iconHeight}}"> {{eventType.typeEventName}}</a>
         </li>
       </div>
@@ -28,7 +28,7 @@
     <ul class="list-unstyled components ul-gl">
       <p class="p-subtitle-gl">Canaux</p>
       <div class="div-li-gl">
-        <li class="li-gl" *ngFor="let eventCanal of eventCanalsRecord">
+        <li [class.li-a-active-gl]="selectedCanalIndex === i" (click)="setCanalIndex(i)" class="li-gl" *ngFor="let eventCanal of eventCanalsRecord ; let i = index">
           <a class="a-gl" ngDefaultControl [(ngModel)]="eventCanal.id" (click)="sortByCanal(eventCanal.id, eventCanal.canalEventName)"><img src="../../../assets/img/icons/left-menu/Canaux/{{eventCanal.canalEventName}}.svg" width="{{iconWidth}}" height="{{iconHeight}}"> {{eventCanal.canalEventName}} </a>
         </li>
       </div>

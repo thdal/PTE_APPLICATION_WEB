@@ -22,6 +22,10 @@
           <label class="form-label-gl" for="inputDate">Date de l'événement</label>
           <input formControlName="eventDate" type="date" class="form-control form-input-gl" id="inputDate" placeholder="Date" [ngClass]="{ 'is-invalid': submitted && fval.eventDate.errors }">
         </div>
+        <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-3 col-sm-12 form-group-gl">
+          <label class="form-label-gl" for="inputHour">Heure de l'événement</label>
+          <input formControlName="eventHour" type="time" class="form-control form-input-gl" id="inputHour" placeholder="Heure" [ngClass]="{ 'is-invalid': submitted && fval.eventHour.errors }">
+        </div>
 
       <div [ngClass]="{'float-child' : !this.mobile}" class="form-group col-md-4 col-sm-12 form-group-gl">
         <label class="form-label-gl">Type de l'événement</label>
@@ -55,10 +59,10 @@
       </div>
       </div>
 
-      <div style="text-align:right; padding-right:40px; padding-bottom: 20px;">
+      <div [ngClass]="{'float-child' : !this.mobile}" style="width:100%;text-align:right; padding-right:40px; padding-bottom: 20px;">
       <button *ngIf="!setEvent" style="cursor:pointer; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Ajouter l'événement</button>
       <button *ngIf="setEvent" style="cursor:pointer; text-decoration: none; font-size:20px" type="submit" class="btn btn-link">Modifier l'événement</button>
-        <a class="btn btn-trash-gl" *ngIf="setEvent" (click)="delEvent()"><i class="bi bi-trash-fill trash-icon"></i> Supprimer</a>
+        <a class="btn btn-trash-gl" *ngIf="setEvent" (click)="delEvent()"><i class="bi bi-trash-fill trash-icon"></i>Supprimer l'événement</a>
       </div>
   </form>
     </div>

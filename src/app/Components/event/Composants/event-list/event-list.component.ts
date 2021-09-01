@@ -20,6 +20,7 @@ export class EventListComponent implements OnInit {
   public currentUser;
   userId: number;
   profileId: number;
+  eventNotFound: string;
   @Input() sortParam: string;
   @Input() myEvents: boolean;
   routeUserId: any;
@@ -36,6 +37,7 @@ export class EventListComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
     this.userId = this.currentUser.id;
     this.profileId = this.currentUser.profile_id;
+    this.eventNotFound = "";
 
   }
 
@@ -47,7 +49,8 @@ export class EventListComponent implements OnInit {
     if (this.myEvents) {
       this.getEventsByUser(this.userId);
     } else {
-      this.getAllEvents();
+      //this.getAllEvents();
+      this.getEventsOfTheDay();
     }
   }
 
@@ -114,6 +117,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
       console.log('oops', error);
     });
   }
@@ -126,6 +131,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
       console.log('oops', error);
     });
   }
@@ -139,6 +146,8 @@ export class EventListComponent implements OnInit {
       if (error.status == 404)
         this.errorNotFound = true;
         console.log('oops', error);
+        if(this.errorNotFound)
+          this.eventNotFound = "Aucun événément programmé pour aujourd\'hui";
     });
   }
 
@@ -150,6 +159,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "Aucun événément programmé pour aujourd\'hui";
       console.log('oops', error);
     });
   }
@@ -162,6 +173,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
       console.log('oops', error);
     });
   }
@@ -174,6 +187,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
       console.log('oops', error);
     });
   }
@@ -269,6 +284,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
         console.log('oops', error);
     });
   }
@@ -283,6 +300,8 @@ export class EventListComponent implements OnInit {
     }, error => {
       if (error.status == 404)
         this.errorNotFound = true;
+      if(this.errorNotFound)
+        this.eventNotFound = "événément introuvable";
         console.log('oops', error);
     });
   }
@@ -311,6 +330,8 @@ export class EventListComponent implements OnInit {
       }, error => {
         if (error.status == 404)
           this.errorNotFound = true;
+        if(this.errorNotFound)
+          this.eventNotFound = "événément introuvable";
         console.log('oops', error);
       });
     } else {
@@ -320,6 +341,8 @@ export class EventListComponent implements OnInit {
       }, error => {
         if (error.status == 404)
           this.errorNotFound = true;
+        if(this.errorNotFound)
+          this.eventNotFound = "événément introuvable";
         console.log('oops', error);
       });
     }

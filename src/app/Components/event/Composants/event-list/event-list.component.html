@@ -10,8 +10,8 @@
             <div style="margin-left: 10px; background-color:transparent; position:absolute;left:0px; padding-right: 10px;">
               <div id="FiltrerParDate">
                 <div style=" left:0px; font-weight:lighter">
-                  <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i style="font-weight: bold" class="bi bi-sliders"></i> Filtrer la liste</button>
-                  <div *ngIf="dateFilterActive" class="div-filtre-date">Entre : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
+                  <button (click)="toggleDateFilter();" class="btn btn-light btn-filtre-date"><i class="bi bi-calendar-date"></i> Filtrer par date</button>
+                  <div *ngIf="dateFilterActive" class="div-filtre-date">Entre le : <input #dateDebut (change)="onDateChanging($event)" class="input-date-gl" type="date"> et le : <input #dateFin (change)="onDateChanging($event)" class="input-date-gl" type="date"/>
                     <span (click)="closeDateFilter();" style="cursor:pointer;"><i class="bi bi-x"></i></span>
                   </div>
                 </div>
@@ -202,6 +202,6 @@
   <!-- *********************** -->
   <!--           404           -->
   <!--  ********************** -->
-  <app-event-not-found></app-event-not-found>
+  <app-event-not-found [eventNotFound]="eventNotFound"></app-event-not-found>
 </div>
 </ng-template>

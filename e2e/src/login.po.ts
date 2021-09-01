@@ -6,7 +6,7 @@ export class LoginPage {
     return browser.get(browser.baseUrl+'/#/login');
   }
 
-  //Recupére l'element h2 du titre de connexion
+  //Recupére l'element h2 du titre de Connexion
   getTitleText(): Promise<string> {
     return element(by.css('app-login #login-title')).getText() as Promise<string>;
   }
@@ -21,7 +21,7 @@ export class LoginPage {
     await element(by.css('app-login #input-password')).sendKeys(password);
   }
 
-  //Clique sur le bouton de connexion
+  //Clique sur le bouton de Connexion
   async clickSubmit() {
     await element(by.css('app-login #btn-submit')).click();
   }

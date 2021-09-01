@@ -61,9 +61,9 @@
     <!-- Form group profile -->
     <div class="form-group float-child">
       <label>Profil d'utilisateur :</label><br><br>
-      <div style="min-height: 0px;" *ngFor="let userProfile of userProfilesRecord" class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile_id.errors }">
+      <div [style.display]="userProfile.id != 3 ? 'inline-block' : 'none'" style="min-height: 0px;" *ngFor="let userProfile of userProfilesRecord" class="form-check form-check-inline" [ngClass]="{ 'is-invalid': submitted && fval.profile_id.errors }">
         <div *ngIf="userProfile.id != 3">
-          <input  class="form-check-input" type="radio" formControlName="profile_id" id="input-radio-profile-{{userProfile.id}}" value="{{userProfile.id}}" >
+          <input class="form-check-input" type="radio" formControlName="profile_id" id="input-radio-profile-{{userProfile.id}}" value="{{userProfile.id}}" >
           <label class="form-check-label" for="input-radio-profile-{{userProfile.id}}">{{userProfile.profile_name}}</label>
         </div>
       </div>
@@ -76,7 +76,7 @@
       <div  [ngClass]="{ 'is-invalid': submitted && !cguAccepted }">
         <label class="checkbox-inline"><input id="input-chk-rgpd" (change)="changed($event)" type="checkbox" required="required"> En vous inscrivant, vous acceptez nos <a style="cursor:pointer;" (click)="goToCgu();">Conditions générales d'utilisation</a>. Découvrez comment nous recueillons, utilisons et partageons vos données en lisant notre<a style="cursor:pointer;" (click)="goToPrivacyPolicy();"> Politique de confidentialité.</a> (RGPD)</label>
         <div *ngIf="submitted && !cguAccepted" style="font-size: 0.875em;color:#dc3545;">
-          <div *ngIf="!cguAccepted"><span id="rgpd-error-message">Vous devez accepter les conditions générales d'utilisation ainsi que notre politique de confidentialité pour pouvoir vous enregistrer.</span></div>
+          <div *ngIf="!cguAccepted"><span id="rgpd-error-message"><br>Vous devez accepter les conditions générales d'utilisation ainsi que notre politique de confidentialité pour pouvoir vous enregistrer.</span></div>
         </div>
       </div>
     </div>

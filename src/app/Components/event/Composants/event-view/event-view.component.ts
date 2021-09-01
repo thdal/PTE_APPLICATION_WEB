@@ -17,6 +17,7 @@ export class EventViewComponent implements OnInit {
   eventImg: boolean;
   typeName = "";
   canalName = "";
+  eventHour = "";
   apiUrl = environment.apiBaseUrl;
   mobile = false;
   shareUrl = "https://www.google.com/";
@@ -41,9 +42,13 @@ export class EventViewComponent implements OnInit {
       this.eventId = params.get('eventId');
       //On envoie l'id au service et on met à jour le formulaire
       this.eventService.getEventById(this.eventId).subscribe(data => {
+        if(data.eventHour == null){
+          this.eventHour = "--:--";
+        }else{
+          this.eventHour = data.eventHour.toString();
+        }
         this.eventOpen = data;
         this.eventImg = data.eventImg;
-        console.log(this.eventOpen);
         this.getEventTypes();
         this.getEventCanals();
       });

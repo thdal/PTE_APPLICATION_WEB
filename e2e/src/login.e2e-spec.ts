@@ -9,7 +9,7 @@ describe('GlobalLive - Login page', () => {
   });
 
   //Verifie la présence du titre dans la vue
-  it('should display connexion title', () => {
+  it('should display Connexion title', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Connexion');
   });
@@ -20,7 +20,7 @@ describe('GlobalLive - Login page', () => {
       userName: 'fakemail',
       password: 'fakepassword'
     });
-    //Appel sur le bouton de connexion
+    //Appel sur le bouton de Connexion
     await page.clickSubmit();
     //Message d'erreur attendu par notre test
     expect((page.getErrorMessage()).isPresent()).toBe(true);
@@ -36,7 +36,7 @@ describe('GlobalLive - Login page', () => {
       userName: 'admin@epsi.fr',
       password: 'fakepassword'
     });
-    //Appel sur le bouton de connexion
+    //Appel sur le bouton de Connexion
     await page.clickSubmit();
     //Message d'erreur attendu par notre test
     expect((page.getErrorMessage()).isPresent()).toBe(true);
@@ -52,7 +52,7 @@ describe('GlobalLive - Login page', () => {
       userName: 'admin@epsi.fr',
       password: 'adminadmin'
     });
-    //Appel sur le bouton de connexion
+    //Appel sur le bouton de Connexion
     await page.clickSubmit();
     //Verifie que nous avons été redirigé sur la page home de l'application
     expect(browser.wait(protractor.ExpectedConditions.urlContains("/"), 5000)

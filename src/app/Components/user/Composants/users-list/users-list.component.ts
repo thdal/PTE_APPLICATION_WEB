@@ -152,8 +152,9 @@ export class UsersListComponent implements OnInit {
     this.loading = true;
 
     this.touchedRows = control.controls.filter(row => row.touched).map(row => row.value);
-    //On ajoute le mot de passe à la main
-    this.touchedRows[0].password = "coucou";
+    //On ajoute le mot de passe à la main pour l'instant
+    //L'idée serait d'envoyer un mail au nouvel utilisateur avec un mot de passe généré aléatoirement
+    this.touchedRows[0].password = "titre-epsi";
     //En création
     if(this.touchedRows[0].id == ""){
       this.userService.register(this.touchedRows[0]).subscribe(data =>{
